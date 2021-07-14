@@ -1,0 +1,21 @@
+Trigger  UpdateContactPhone on Contact(before insert){
+    
+        list<account> accList= [select id, name,phone from account ];
+        for(account acc : acclist )
+            
+        {
+            
+            for (contact con : trigger.new)
+            {
+                
+                if(con.accountid==acc.id)
+                {
+                    system.debug('acc.id'+acc.id);
+                    con.otherphone=acc.phone;
+                }
+            }
+        
+    }
+    
+    
+    
